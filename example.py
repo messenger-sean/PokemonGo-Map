@@ -692,6 +692,8 @@ transform_from_wgs_to_gcj(Location(Fort.Latitude, Fort.Longitude))
             if pokename.lower() not in only and pokeid not in only:
                 continue
 
+        os.system('notify-send "PoGo" "Found ' + pokename.encode('utf-8') + '\nExpiring in ' + str(int(poke.TimeTillHiddenMs / 1000)).encode('utf-8') + '"')
+
         disappear_timestamp = time.time() + poke.TimeTillHiddenMs \
             / 1000
 

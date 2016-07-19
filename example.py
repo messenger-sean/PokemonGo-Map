@@ -448,8 +448,12 @@ def get_args():
         '-i', '--ignore', help='Comma-separated list of Pokémon names or IDs to ignore')
     group.add_argument(
         '-o', '--only', help='Comma-separated list of Pokémon names or IDs to search')
-    group.add_argument(
-        '-n', '--notify', help='Would you like notifications of Pokemon?')
+    parser.add_argument(
+        '-n',
+        '--notify',
+        help='Would you like notifications of Pokemon?',
+        action='store_true',
+        default=False)
     parser.add_argument(
         "-ar",
         "--auto_refresh",

@@ -449,6 +449,12 @@ def get_args():
     group.add_argument(
         '-o', '--only', help='Comma-separated list of Pokémon names or IDs to search')
     parser.add_argument(
+        '-n',
+        '--notify',
+        help='Would you like notifications of Pokemon?',
+        action='store_true',
+        default=False)
+    parser.add_argument(
         "-ar",
         "--auto_refresh",
         help="Enables an autorefresh that behaves the same as a page reload. " +
@@ -692,7 +698,8 @@ transform_from_wgs_to_gcj(Location(Fort.Latitude, Fort.Longitude))
             if pokename.lower() not in only and pokeid not in only:
                 continue
 
-        os.system('notify-send "PoGo" "Found ' + pokename.encode('utf-8') + '\nExpiring in ' + str(int(poke.TimeTillHiddenMs / 1000)).encode('utf-8') + '"')
+        if args.notify:
+            os.system('notify-send "PoGo" "Found ' + pokename.encode('utf-8') + '\nExpiring in ' + str(int(poke.TimeTillHiddenMs / 1000)).encode('utf-8') + '"')
 
         disappear_timestamp = time.time() + poke.TimeTillHiddenMs \
             / 1000
